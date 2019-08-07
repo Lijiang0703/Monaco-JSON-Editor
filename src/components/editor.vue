@@ -8,14 +8,21 @@ import 'monaco-editor/esm/vs/language/json/monaco.contribution';
 
 
     export default {
+        props:{
+            value:{
+                type: Array,
+                default: []
+            }
+        },
         data(){
             return {
                 monacoInstance: null
             }
         },
         mounted: function(){
+            const value = this.value;
             const monacoInstance = monaco.editor.create(document.getElementById("monaco-editor"),{
-                value:`[{}]`,
+                value:`${JSON.stringify(value)}`,
                 language: "json"
             });
             const self = this;
@@ -23,7 +30,7 @@ import 'monaco-editor/esm/vs/language/json/monaco.contribution';
             monacoInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function(){
                 console.log('saved')
                 const value = monacoInstance.getValue();
-                self.updateValue(value);
+                self.updateValue(JSON.parse(value));
             })
         },
         methods:{

@@ -16,12 +16,17 @@ export default {
     },
     data(){
         return {
-            json: []
+            // json: []
         }
     },
     created: function(){
         console.log(this.data)
-        this.json = jsonConvert(this.data)
+        // this.json = jsonConvert(this.data)
+    },
+    computed: {
+        json: function(){
+            return jsonConvert(this.data)
+        }
     },
     components: {
         ElementJson

@@ -21,6 +21,7 @@
     "element-ui": "^2.11.1",
     "element-widget": "^0.0.1",
     "monaco-editor": "^0.17.1",
+    "monaco-editor-webpack-plugin": "^1.7.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

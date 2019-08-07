@@ -2,16 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin= require('html-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
     mode: "development",
     devtool: 'inline-source-map',
     entry: {
         index: path.resolve(__dirname,'../src/index'),
+        "json.worker": "monaco-editor/esm/vs/language/json/json.worker"
         // test: path.resolve(__dirname,'../test/index')
     },
     output: {
-        filename: "index.bundle.js",
+        filename: "[name].bundle.js",
         path: path.resolve(__dirname,'../dist'),
         library: "elementWidget",
         libraryTarget: "umd",
@@ -49,6 +51,10 @@ module.exports = {
         extensions: ['.js','.vue']
     },
     plugins: [
+        new MonacoWebpackPlugin({
+            languages:["json"],
+            features:["coreCommands","find"]
+        }),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             // chunks: ['index','test'],

@@ -1,7 +1,12 @@
 <template>
     <div class="monaco">
-        <Editor @updateValue="update" :value="value"></Editor>
-        <Preview :data="value"></Preview>
+        <Editor @updateValue="update" :value="value" class="e_editor"></Editor>
+        <Preview :data="value" class="e_preview"></Preview>
+        <div>
+            <ul>
+                <li><span>command + s :保存</span></li>
+            </ul>
+        </div>
     </div>    
 </template>
 <script>
@@ -37,3 +42,19 @@ export default {
     }
 }
 </script>
+<style>
+.monaco{
+    width: 80%;
+    margin: auto;
+    /* height: 100%; */
+    display: flex;
+}
+.e_editor{
+    width: 50%;
+    /* height: 100%; */
+}
+.e_preview{
+    width: 50%;
+    background: rgb(96, 96, 96);
+}
+</style>

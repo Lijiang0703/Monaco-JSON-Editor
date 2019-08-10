@@ -33,3 +33,8 @@ export default {
     }
 }
 </script>
+<style>
+#preview{
+    padding: 10px;
+}
+</style>

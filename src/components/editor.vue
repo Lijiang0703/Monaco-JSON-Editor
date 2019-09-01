@@ -1,6 +1,6 @@
 <template>
     <div>
-    <div id="monaco-editor"></div>
+        <div :id="id" class="editor"></div>
     </div>
 </template>
 <script>
@@ -10,8 +10,16 @@ import 'monaco-editor/esm/vs/editor/contrib/format/formatActions';
 export default {
     props:{
         value:{
-            type: Array,
+            type: [Array,Object],
             default: []
+        },
+        id:{
+            type: String,
+            default: 'monaco-editor'
+        },
+        language:{
+            type: String,
+            default: 'json'
         }
     },
     data(){
@@ -22,18 +30,20 @@ export default {
     mounted: function(){
         const self = this;
         const value = this.value;
-        const monacoInstance = monaco.editor.create(document.getElementById("monaco-editor"),{
+        const monacoInstance = monaco.editor.create(document.getElementById(this.id),{
             value:`${JSON.stringify(value)}`,
-            language: "json"
+            language: this.language
         });
         monacoInstance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S, function(){
             console.log('saved')
             const value = monacoInstance.getValue();
-            self.updateValue(JSON.parse(value));
+            if(value) {
+                self.updateValue(JSON.parse(value));
+            }
         });
         setTimeout(()=>{
             monacoInstance.getAction('editor.action.formatDocument').run();
-        },500)
+        },1000)
         this.monacoInstance = monacoInstance;
     },
     methods:{
@@ -48,7 +58,7 @@ export default {
 }
 </script>
 <style>
-#monaco-editor{
+.editor{
     height: 500px;
     border: 1px solid #ccc;
 }

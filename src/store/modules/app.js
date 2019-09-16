@@ -25,7 +25,7 @@ const app = {
             commit('init', data);
         },
         updateData({state, commit}, data){
-            
+            commit('init', data);
         }
     },
     mutations: {

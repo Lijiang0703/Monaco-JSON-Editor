@@ -14,7 +14,7 @@
             id="app_editor"
             ></Editor>
         <Editor @updateValue="update" :value="value" class="e_editor"></Editor>
-        <Preview :data="json" class="e_preview" @change="panelChange"></Preview>
+        <Preview :data="json" class="e_preview"></Preview>
         <div>
             <ul>
                 <li><span>command + s :保存</span></li>
@@ -30,33 +30,51 @@ export default {
     data(){
         return {
             // value: [{}]
-            appJson: {
-                title1:{
-                    type: 'colorpicker',
-                    value: '#fff'
-                },
-                title2:{
-                    type: 'colorpicker',
-                    value: '#fff'
-                },
-                title:{
-                    type: 'colorpicker',
-                    value: '#fff'
-                }
-            },
-            value: [
-                {
-                    type: 'button'
-                },
-                {
-                    type: 'checkbox'
-                },
-                {
-                    type: 'colorpicker',
-                    value: '${title.value}'
-                }
-            ],
+            // appJson: {
+            //     title1:{
+            //         type: 'colorpicker',
+            //         value: '#fff'
+            //     },
+            //     title2:{
+            //         type: 'colorpicker',
+            //         value: '#fff'
+            //     },
+            //     title:{
+            //         type: 'colorpicker',
+            //         value: '#fff'
+            //     }
+            // },
+            // value: [
+            //     {
+            //         type: 'button'
+            //     },
+            //     {
+            //         type: 'checkbox'
+            //     },
+            //     {
+            //         type: 'colorpicker',
+            //         value: '${title.value}'
+            //     }
+            // ],
             json: []
+        }
+    },
+    computed:{
+        appJson: {
+            get: function(){
+                return this.$store.state.app.appData
+            },
+            set: function(){
+
+            }
+        },
+        value: {
+            get: function(){
+                return this.$store.state.middle.mapJson
+            },
+            set: function(){
+
+            }
         }
     },
     created : function(){
@@ -69,31 +87,34 @@ export default {
     methods:{
         update: function(value){
             console.log('updated')
-            this.value = value;
-            this.updateJson();
+            // this.value = value;
+            // this.updateJson();
             this.$store.dispatch('middle/updateData', value);
+            this.$store.dispatch('panel/updateData', {
+                middleData: value
+            });
         },
         updateAppJson: function(value){
             console.log(value);
-            this.appJson = value;
-            this.updateJson();
+            // this.appJson = value;
+            // this.updateJson();
             this.$store.dispatch('app/updateData', value);
             this.$store.dispatch('panel/updateData', {
                 appData: value
             });
         },
         updateJson: function(){
-            this.json = this.formatJson();
+            // this.json = this.formatJson();
             // this.$store.dispatch('panel/updateData');
         },
         formatJson: function(){
             // value值是处理得到的
-            const value = Util.positiveFormat(this.value, this.appJson);
-            return value;
+            // const value = Util.positiveFormat(this.value, this.appJson);
+            // return value;
         },
-        panelChange: function(val,oldVal,index){
-            this.$store.dispatch('panel/change',{val,oldVal,index})
-        }
+        // panelChange: function(val,oldVal,index){
+        //     this.$store.dispatch('panel/change',{val,oldVal,index})
+        // }
     },
     components: {
         Editor,

@@ -20,11 +20,13 @@ const trans = {
     },
     actions: {
         updateData({state, commit}, data){
-
+            commit('init', data);
         }
     },
     mutations: {
-        
+        init(state, data){
+            state.mapJson = data;
+        }
     }
 }
 

@@ -1,11 +1,13 @@
 <template>
     <div id="preview">
-        <ElementJson :elementJson="json"></ElementJson>
+        <ElementJson :elementJson="json" @change="onChange"></ElementJson>
     </div>
 </template>
 <script>
 import jsonConvert from "element-widget/src/util/jsonconvert";
-import ElementJson from "element-widget/src/main";
+// import ElementJson from "element-widget/src/main";
+import ElementJson from "../elementComponents/main";
+import config from '../elementComponents/index';
 
 export default {
     props:{
@@ -26,6 +28,12 @@ export default {
     computed: {
         json: function(){
             return jsonConvert(this.data)
+        }
+    },
+    methods:{
+        onChange: function(val,oldVal,index) {
+            console.log(val,oldVal,index);
+            this.$emit('change', val,oldVal,index);
         }
     },
     components: {

@@ -1,5 +1,6 @@
 // 应用数据管理
 const app = {
+    namespaced: true,
     state: {
         appData: {}
     },

@@ -8,13 +8,13 @@
             </ul>
         </div> -->
         <Editor 
-            @updateValue="updateJson"
+            @updateValue="updateAppJson"
             :value="appJson"
             class="e_editor"
             id="app_editor"
-            language="javascript"></Editor>
+            ></Editor>
         <Editor @updateValue="update" :value="value" class="e_editor"></Editor>
-        <Preview :data="value" class="e_preview"></Preview>
+        <Preview :data="json" class="e_preview" @change="panelChange"></Preview>
         <div>
             <ul>
                 <li><span>command + s :保存</span></li>
@@ -55,25 +55,44 @@ export default {
                     type: 'colorpicker',
                     value: '${title.value}'
                 }
-            ]
+            ],
+            json: []
         }
     },
     created : function(){
-        this.value = this.formatJson();
+        // this.json = this.formatJson(); 
+        // this.updateJson();
+        // debugger
+        this.$store.dispatch('panel/initData', {
+            appData: this.appJson,
+            middleData: this.value
+        })
+        this.$store.dispatch('app/initData', this.appJson);
     },
     methods:{
         update: function(value){
             console.log('updated')
             this.value = value;
+            this.updateJson();
+            this.$store.dispatch('middle/updateData', value);
         },
-        updateJson: function(vaule){
+        updateAppJson: function(value){
             console.log(value);
-            this.appJson = vaule;
+            this.appJson = value;
+            this.updateJson();
+            this.$store.dispatch('app/updateData', value);
+        },
+        updateJson: function(){
+            this.json = this.formatJson();
+            this.$store.dispatch('panel/updateData');
         },
         formatJson: function(){
             // value值是处理得到的
             const value = Util.positiveFormat(this.value, this.appJson);
             return value;
+        },
+        panelChange: function(val,oldVal,index){
+            this.$store.dispatch('panel/change',{val,oldVal,index})
         }
     },
     components: {

@@ -37,19 +37,19 @@
 </template>
 
 <script>
-import Button from "./components/base/button";
-import Chexkbox from "./components/base/checkbox";
-import CImage from "./components/custom/cimage";
-import Collapse from "./components/base/collapse";
-import ColorPicker from "./components/base/colorpicker";
-import CSwitch from "./components/base/switch";
-import Divider from "./components/base/divider";
-import Icon from "./components/custom/icon";
-import Input from "./components/base/input";
-import Link from "./components/custom/link";
-import Overlay from "./components/custom/overlay";
-import Select from "./components/base/select";
-import Slider from "./components/base/slider";
+import Button from "./base/button";
+import Chexkbox from "./base/checkbox";
+import CImage from "./custom/cimage";
+import Collapse from "./base/collapse";
+import ColorPicker from "./base/colorpicker";
+import CSwitch from "./base/switch";
+import Divider from "./base/divider";
+import Icon from "./custom/icon";
+import Input from "./base/input";
+import Link from "./custom/link";
+import Overlay from "./custom/overlay";
+import Select from "./base/select";
+import Slider from "./base/slider";
 
 export default {
     name: 'cmain',

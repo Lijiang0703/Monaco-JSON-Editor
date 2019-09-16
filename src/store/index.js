@@ -1,17 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import app from './modules/app';
-import middle from './modules/middlele';
+import middle from './modules/middle';
 import panel from './modules/panel';
 import op from './modules/op';
 
-Vue.arguments(Vuex);
+Vue.use(Vuex);
 const store = new Vuex.Store({
     modules:{
         op,
-        app,
-        middle,
-        panel
+        app: app,
+        middle: middle,
+        panel: panel
     }
 })
 

@@ -1,7 +1,9 @@
 const Util = {
     positiveFormat: (json, data) => {
-        json.forEach((object)=>{
+        const formatJson = [];
+        json.reduce((formatJson, object, index)=>{
             if(object) {
+                formatJson[index] = JSON.parse(JSON.stringify(object));
                 for(let key in object) {
                     const item = object[key];
                     const regx = /\$\{(\S+?)\}/g;
@@ -16,15 +18,17 @@ const Util = {
                             }
                             return obj;
                         }, '');
-                        object[key] = value;
+                        formatJson[index][key] = value;
                     }
                 }
             }
-        })
-        return json;
+            return formatJson;
+        },formatJson)
+        console.log(formatJson)
+        return formatJson;
     },
     reverse: () => {
-
+        
     }
 }
 export default Util;

@@ -45,9 +45,20 @@ export default {
             c_value: this.value ? true : false
         }
     },
+    computed: {
+        c_value: {
+            get: function(){
+                return this.value ? true : false
+            },
+            set: function(val){
+                // this.value = val;
+                this.$emit('change', val, this.c_value);
+            }
+        }
+    },
     watch:{
         c_value: function(val, oldVal){
-            this.$emit('change', val, oldVal);
+            // this.$emit('change', val, oldVal);
         }
     },
     components: {

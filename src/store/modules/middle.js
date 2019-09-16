@@ -2,7 +2,18 @@
 const trans = {
     namespaced: true,
     state: {
-        mapJson: []
+        mapJson: [
+            {
+                type: 'button'
+            },
+            {
+                type: 'checkbox'
+            },
+            {
+                type: 'colorpicker',
+                value: '${title.value}'
+            }
+        ]
     },
     getters: {
 
@@ -16,4 +27,6 @@ const trans = {
         
     }
 }
+
+export default trans;
 

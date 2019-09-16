@@ -41,8 +41,19 @@ export default {
     },
     data(){
         return {
-            c_value: this.value
+            // c_value: this.value
         }
+    },
+    computed:{
+        c_value: {
+            get: function(){
+                return this.value
+            },
+            set: function(val){
+                // this.value = val;
+                this.$emit('change', val, this.c_value);
+            }
+        },
     },
     methods:{
         onChange:function(){
@@ -51,7 +62,7 @@ export default {
     },
     watch:{
         c_value: function(val, oldVal){
-            this.$emit('change', val, oldVal);
+            // this.$emit('change', val, oldVal);
         }
     },
     components: {

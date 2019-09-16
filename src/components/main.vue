@@ -63,11 +63,8 @@ export default {
         // this.json = this.formatJson(); 
         // this.updateJson();
         // debugger
-        this.$store.dispatch('panel/initData', {
-            appData: this.appJson,
-            middleData: this.value
-        })
-        this.$store.dispatch('app/initData', this.appJson);
+        this.$store.dispatch('panel/initData');
+        // this.$store.dispatch('app/initData', this.appJson);
     },
     methods:{
         update: function(value){
@@ -81,10 +78,13 @@ export default {
             this.appJson = value;
             this.updateJson();
             this.$store.dispatch('app/updateData', value);
+            this.$store.dispatch('panel/updateData', {
+                appData: value
+            });
         },
         updateJson: function(){
             this.json = this.formatJson();
-            this.$store.dispatch('panel/updateData');
+            // this.$store.dispatch('panel/updateData');
         },
         formatJson: function(){
             // value值是处理得到的

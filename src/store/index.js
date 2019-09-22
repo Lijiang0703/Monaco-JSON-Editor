@@ -12,6 +12,12 @@ const store = new Vuex.Store({
         app: app,
         middle: middle,
         panel: panel
+    },
+    actions: {
+        //集中管理actions
+        updateAppData: ({ state, commit, dispatch }, data)=>{
+            dispatch('app/updateData', data);
+        }
     }
 })
 

@@ -29,16 +29,18 @@ const panel = {
                 appData: app
             });
         },
-        change({state, commit, rootState}, data){
+        change({state, commit, dispatch, rootState}, data){
             //纪录op，同时更新app json数据
             const { index, val } = data; //先处理简单的
-
-            commit('dataChange', {
+            const formatData = {
                 ...data,
                 middleData: rootState.middle.mapJson || [],
                 appData: rootState.app.appData || {}
-            });
-            
+            }
+            const reverseData = Util.reverseFormat(formatData);
+            const newData = Util.panelDataChange(data, state.data);
+            dispatch('updateAppData', reverseData, {root: true});
+            commit('dataChange', newData);
         }
     },
     mutations: {
@@ -48,7 +50,7 @@ const panel = {
             state.data = data;
         },
         dataChange(state, data){
-            const reverseData = Util.reverseFormat(data);
+            state.data = data;
         }
     }
 }

@@ -72,7 +72,7 @@ const Util = {
                                 data: {
                                     ...data.data,
                                     value: val
-                                }
+                                },
                                 value: val, 
                             }
                         }else {

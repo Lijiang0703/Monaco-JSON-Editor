@@ -5,5 +5,43 @@ import Main from './components/main';
 new Vue({
     el: '#editor',
     store,
-    render: (h)=>h(Main)
+    render: (h)=> {
+        return h(Main,{ 
+            props:{
+                idata: {
+                    mapJson: [
+                        {
+                            type: 'button'
+                        },
+                        {
+                            type: 'checkbox'
+                        },
+                        {
+                            type: 'colorpicker',
+                            value: '${title.value}'
+                        }
+                    ],
+                    appData: {
+                        title1:{
+                            type: 'colorpicker',
+                            value: '#fff'
+                        },
+                        title2:{
+                            type: 'colorpicker',
+                            value: '#fff'
+                        },
+                        title:{
+                            type: 'colorpicker',
+                            value: '#fff'
+                        }
+                    }
+                }
+            }
+        })
+    }
 })
+
+export {
+    store,
+    Main
+}

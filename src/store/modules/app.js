@@ -3,18 +3,18 @@ const app = {
     namespaced: true,
     state: {
         appData: {
-            title1:{
-                type: 'colorpicker',
-                value: '#fff'
-            },
-            title2:{
-                type: 'colorpicker',
-                value: '#fff'
-            },
-            title:{
-                type: 'colorpicker',
-                value: '#fff'
-            }
+            // title1:{
+            //     type: 'colorpicker',
+            //     value: '#fff'
+            // },
+            // title2:{
+            //     type: 'colorpicker',
+            //     value: '#fff'
+            // },
+            // title:{
+            //     type: 'colorpicker',
+            //     value: '#fff'
+            // }
         }
     },
     getters: {

@@ -27,42 +27,21 @@ import Editor from './editor';
 import Preview from './preview';
 import Util from '../util/util'
 export default {
+    props:{
+        idata: {
+            type: Object,
+            default: {}
+        }
+    },
     data(){
         return {
-            // value: [{}]
-            // appJson: {
-            //     title1:{
-            //         type: 'colorpicker',
-            //         value: '#fff'
-            //     },
-            //     title2:{
-            //         type: 'colorpicker',
-            //         value: '#fff'
-            //     },
-            //     title:{
-            //         type: 'colorpicker',
-            //         value: '#fff'
-            //     }
-            // },
-            // value: [
-            //     {
-            //         type: 'button'
-            //     },
-            //     {
-            //         type: 'checkbox'
-            //     },
-            //     {
-            //         type: 'colorpicker',
-            //         value: '${title.value}'
-            //     }
-            // ],
             json: []
         }
     },
     computed:{
         appJson: {
             get: function(){
-                return this.$store.state.app.appData
+                return this.$store.state.app.appData || [];
             },
             set: function(){
 
@@ -70,7 +49,7 @@ export default {
         },
         value: {
             get: function(){
-                return this.$store.state.middle.mapJson
+                return this.$store.state.middle.mapJson || {};
             },
             set: function(){
 
@@ -81,6 +60,10 @@ export default {
         // this.json = this.formatJson(); 
         // this.updateJson();
         // debugger
+        const props = this.idata;
+        const { mapJson, appData } = props;
+        this.$store.dispatch('app/initData', appData);
+        this.$store.dispatch('middle/initData', mapJson);
         this.$store.dispatch('panel/initData');
         // this.$store.dispatch('app/initData', this.appJson);
     },
@@ -126,7 +109,7 @@ export default {
 .monaco{
     width: 90%;
     margin: auto;
-    /* height: 100%; */
+    height: 100%;
     display: flex;
 }
 .e_editor{

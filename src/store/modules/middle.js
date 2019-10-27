@@ -3,16 +3,16 @@ const trans = {
     namespaced: true,
     state: {
         mapJson: [
-            {
-                type: 'button'
-            },
-            {
-                type: 'checkbox'
-            },
-            {
-                type: 'colorpicker',
-                value: '${title.value}'
-            }
+            // {
+            //     type: 'button'
+            // },
+            // {
+            //     type: 'checkbox'
+            // },
+            // {
+            //     type: 'colorpicker',
+            //     value: '${title.value}'
+            // }
         ]
     },
     getters: {
@@ -20,6 +20,9 @@ const trans = {
     },
     actions: {
         updateData({state, commit}, data){
+            commit('init', data);
+        },
+        initData({state,commit}, data){
             commit('init', data);
         }
     },

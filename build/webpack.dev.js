@@ -9,7 +9,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
         index: path.resolve(__dirname,'../src/index'),
-        "json.worker": "monaco-editor/esm/vs/language/json/json.worker"
+        // "json.worker": "monaco-editor/esm/vs/language/json/json.worker"
         // test: path.resolve(__dirname,'../test/index')
     },
     output: {
@@ -52,8 +52,9 @@ module.exports = {
     },
     plugins: [
         new MonacoWebpackPlugin({
-            languages:["json"],
-            features:["coreCommands","find"]
+            languages:["json","javascript"],
+            features:["coreCommands","find"],
+            output: './dist/monaco-editor'
         }),
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({

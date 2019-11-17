@@ -63,8 +63,8 @@ export default {
         value: function(data){
             console.log(1)
             // this.initEditor();
-            this.monacoInstance.setValue(`${JSON.stringify(data)}`);
-            this.monacoInstance.getAction('editor.action.formatDocument').run();
+            this.monacoInstance && this.monacoInstance.setValue(`${JSON.stringify(data)}`);
+            this.monacoInstance && this.monacoInstance.getAction('editor.action.formatDocument').run();
         }
     }
 }
